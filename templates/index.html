@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare FHIR Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="{{ url_for('index') }}" class="active">Create Resources</a>
+            <a href="{{ url_for('find_page') }}">Find Resources</a>
+        </nav>
+        <header>
+            <h1>Healthcare FHIR Dashboard</h1>
+            <p>A web interface to interact with Google Cloud Healthcare API.</p>
+        </header>
+
+        <div class="main-content">
+            <div class="forms-column">
+                <details>
+                    <summary><h2>Create Practitioner</h2></summary>
+                    <form id="form-practitioner" class="form-container">
+                        <input type="text" name="npi" placeholder="NPI (e.g., 1234567893)" required>
+                        <input type="text" name="family_name" placeholder="Family Name" required>
+                        <input type="text" name="given_name" placeholder="Given Name" required>
+                        <button type="submit">Create Practitioner</button>
+                    </form>
+                </details>
+
+                <details open>
+                    <summary><h2>Create Patient</h2></summary>
+                    <form id="form-patient" class="form-container">
+                        <input type="text" name="family_name" placeholder="Family Name" required>
+                        <input type="text" name="given_name" placeholder="Given Name" required>
+                        <input type="text" name="gender" placeholder="e.g., male, female, other" required>
+                        <input type="date" name="birth_date" required>
+                        <input type="text" name="mrn" placeholder="Medical Record Number" required>
+                        <button type="submit">Create Patient</button>
+                    </form>
+                </details>
+
+                <details>
+                    <summary><h2>Create Encounter</h2></summary>
+                    <form id="form-encounter" class="form-container">
+                        <input type="text" name="patient_id" placeholder="Patient ID (from created patient)" required>
+                        <input type="text" name="encounter_status" value="in-progress" placeholder="Status (e.g., in-progress)" required>
+                        <input type="text" name="encounter_text" placeholder="Reason (e.g., 'Routine Check-up')" required>
+                        <button type="submit">Create Encounter</button>
+                    </form>
+                </details>
+
+                <details>
+                    <summary><h2>Create Condition</h2></summary>
+                    <form id="form-condition" class="form-container">
+                        <input type="text" name="patient_id" placeholder="Patient ID" required>
+                        <input type="text" name="clinical_status" value="active" placeholder="Clinical Status" required>
+                        <input type="text" name="verification_status" value="confirmed" placeholder="Verification Status" required>
+                        <input type="text" name="snomed_code" placeholder="SNOMED CT Code (e.g., 38341003)" required>
+                        <input type="text" name="condition_display" placeholder="Display Name (e.g., 'Hypertension')" required>
+                        <button type="submit">Create Condition</button>
+                    </form>
+                </details>
+
+                <details>
+                    <summary><h2>Create Procedure</h2></summary>
+                    <form id="form-procedure" class="form-container">
+                        <input type="text" name="patient_id" placeholder="Patient ID" required>
+                        <input type="text" name="encounter_id" placeholder="Encounter ID (from created encounter)" required>
+                        <input type="text" name="procedure_status" value="completed" placeholder="Procedure Status" required>
+                        <input type="text" name="snomed_code" placeholder="SNOMED CT Code (e.g., 73761001)" required>
+                        <input type="text" name="procedure_display" placeholder="Display Name (e.g., 'Appendectomy')" required>
+                        <input type="text" name="reason_text" placeholder="Reason (e.g., 'Acute appendicitis')" required>
+                        <button type="submit">Create Procedure</button>
+                    </form>
+                </details>
+
+                <details>
+                    <summary><h2>Create Medication Request</h2></summary>
+                    <form id="form-medication-request" class="form-container">
+                        <input type="text" name="patient_id" placeholder="Patient ID" required>
+                        <input type="text" name="practitioner_id" placeholder="Practitioner ID (from created practitioner)" required>
+                        <input type="text" name="practitioner_display" placeholder="Practitioner Display Name" required>
+                        <input type="text" name="medication_status" value="active" placeholder="Status" required>
+                        <input type="text" name="medication_intent" value="order" placeholder="Intent" required>
+                        <input type="text" name="rxnorm_code" placeholder="RxNorm Code (e.g., 856984)" required>
+                        <input type="text" name="medication_display" placeholder="Medication (e.g., 'Lisinopril 10mg')" required>
+                        <input type="text" name="dosage_text" placeholder="Dosage (e.g., '1 tablet by mouth daily')" required>
+                        <button type="submit">Create Medication Request</button>
+                    </form>
+                </details>
+
+                <details>
+                    <summary><h2>Create Diagnostic Report</h2></summary>
+                    <form id="form-diagnostic-report" class="form-container">
+                         <input type="text" name="patient_id" placeholder="Patient ID" required>
+                         <input type="text" name="encounter_id" placeholder="Encounter ID" required>
+                         <input type="text" name="practitioner_id" placeholder="Practitioner ID" required>
+                         <input type="text" name="report_status" value="final" placeholder="Report Status" required>
+                         <input type="text" name="loinc_code" placeholder="LOINC Code (e.g., 24323-8)" required>
+                         <input type="text" name="report_display" placeholder="Display Name (e.g., 'Complete Blood Count')" required>
+                         <input type="text" name="conclusion" placeholder="Conclusion" required>
+                        <button type="submit">Create Diagnostic Report</button>
+                    </form>
+                </details>
+
+                <details>
+                    <summary><h2>Create Observation</h2></summary>
+                    <form id="form-observation" class="form-container">
+                        <input type="text" name="patient_id" placeholder="Patient ID" required>
+                        <input type="text" name="encounter_id" placeholder="Encounter ID" required>
+                        <input type="text" name="observation_status" value="final" placeholder="Observation Status" required>
+                        <input type="text" name="loinc_code" placeholder="LOINC Code (e.g., 8310-5)" required>
+                        <input type="text" name="observation_display" placeholder="Display (e.g., 'Body Temperature')" required>
+                        <input type="number" step="any" name="observation_value" placeholder="Value (e.g., 37.2)" required>
+                        <input type="text" name="observation_unit" placeholder="Unit (e.g., 'Cel')" required>
+                        <button type="submit">Create Observation</button>
+                    </form>
+                </details>
+
+            </div>
+            <div class="results-column">
+                <h2>API Response</h2>
+                <div id="response-container">
+                    <pre id="api-response">Awaiting API call...</pre>
+                </div>
+                <h3>Quick Reference IDs</h3>
+                <em>Click an ID below to fill relevant fields.</em>
+                <div id="id-store">
+                    <p><strong>Last Patient ID:</strong> <span id="last-patient-id">N/A</span></p>
+                    <p><strong>Last Encounter ID:</strong> <span id="last-encounter-id">N/A</span></p>
+                    <p><strong>Last Practitioner ID:</strong> <span id="last-practitioner-id">N/A</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

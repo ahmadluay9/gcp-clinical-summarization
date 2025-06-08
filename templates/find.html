@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find FHIR Resource</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="{{ url_for('index') }}">Create Resources</a>
+            <a href="{{ url_for('find_page') }}" class="active">Find Resources</a>
+        </nav>
+
+        <header>
+            <h1>Find a FHIR Resource</h1>
+            <p>Retrieve any resource from the FHIR store by its type and ID.</p>
+        </header>
+
+        <div class="main-content">
+            <div class="forms-column">
+                <details open>
+                    <summary><h2>Search Parameters</h2></summary>
+                    <form id="find-resource-form" class="form-container">
+                        <label for="resource-type">Resource Type:</label>
+                        <select name="resource_type" id="resource-type" required>
+                            <option value="Patient">Patient</option>
+                            <option value="Encounter">Encounter</option>
+                            <option value="Condition">Condition</option>
+                            <option value="Procedure">Procedure</option>
+                            <option value="Practitioner">Practitioner</option>
+                            <option value="MedicationRequest">MedicationRequest</option>
+                            <option value="DiagnosticReport">DiagnosticReport</option>
+                            <option value="Observation">Observation</option>
+                        </select>
+
+                        <label for="resource-id">Resource ID:</label>
+                        <input type="text" name="resource_id" id="resource-id" placeholder="Enter the resource ID to find" required>
+
+                        <button type="submit">Find Resource</button>
+                    </form>
+                </details>
+                <details>
+                    <summary><h2>Find Patient by MRN</h2></summary>
+                    <form id="find-mrn-form" class="form-container">
+                        <label for="mrn-value">Medical Record Number (MRN):</label>
+                        <input type="text" name="mrn_value" id="mrn-value" placeholder="Enter patient's MRN" required>
+                        <div class="button-group">
+                            <button type="button" id="find-by-mrn-btn">Find Patient Only</button>
+                            <button type="button" id="find-everything-by-mrn-btn" class="primary-action">Find All Records</button>
+                        </div>                        
+                    </form>
+                </details>
+            </div>
+            <div class="results-column">
+                <h2>API Response</h2>
+                <div id="response-container">
+                    <pre id="api-response">Awaiting search...</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/find.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+/* --- General Styling --- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    background-color: #f0f2f5;
+    color: #1c1e21;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+/* --- Layout --- */
+.main-content {
+    display: flex;
+    gap: 20px;
+}
+
+.forms-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.results-column {
+    flex: 1;
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
+}
+
+/* --- Form & Details Styling --- */
+details {
+    background: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #dddfe2;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+details[open] {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+summary {
+    padding: 15px 20px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #0d6efd;
+}
+
+summary:hover {
+    background-color: #f7f7f7;
+}
+
+.form-container {
+    padding: 0 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"],
+select { /* Added select for consistency */
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+button {
+    background-color: #0d6efd;
+    color: white;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    align-self: flex-start;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #0b5ed7;
+}
+
+label { /* Added for the 'Find' page forms */
+    font-weight: 500;
+    margin-bottom: -5px;
+}
+
+/* --- Results Styling --- */
+.results-column h2, .results-column h3 {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+#response-container {
+    background-color: #282c34;
+    color: #abb2bf;
+    padding: 20px;
+    border-radius: 8px;
+    height: 500px;
+    overflow-y: auto;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+#id-store {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* --- Styling for Autofill and Quick Reference IDs (CLEANED UP) --- */
+
+#id-store p {
+    margin: 0 0 12px 0; /* Combined into a single rule */
+}
+
+/* This single rule now combines the font-weight from the old rule and all the styles from the new one. */
+#id-store span {
+    font-weight: bold;
+    color: #0d6efd; /* Blue link color */
+    cursor: pointer;
+    text-decoration: none;
+    border-bottom: 2px dotted transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+#id-store span:hover {
+    color: #0b5ed7;
+    border-bottom-color: #0b5ed7;
+}
+
+/* Keyframes for the input flash animation */
+@keyframes flash {
+    0% {
+        background-color: #e0f7fa; /* A light blue/cyan flash color */
+        border-color: #007bff;
+    }
+    100% {
+        background-color: #fff;
+        border-color: #ccc;
+    }
+}
+
+/* Class to apply the animation to an input field */
+.input-flash {
+    animation: flash 1.5s ease-out;
+}
+
+/* --- Navigation Bar Styling --- */
+nav {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 10px 15px;
+    border-radius: 6px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav a:hover {
+    background-color: #f0f2f5;
+    color: #111;
+}
+
+nav a.active {
+    background-color: #0d6efd;
+    color: #ffffff;
+}
+
+/* --- Styling for button groups --- */
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Style for a primary action button */
+button.primary-action {
+    background-color: #198754; /* A shade of green */
+}
+button.primary-action:hover {
+    background-color: #157347;
+}
