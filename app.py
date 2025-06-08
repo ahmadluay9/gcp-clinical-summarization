@@ -221,43 +221,6 @@ def api_create_observation():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-# # Add this new API endpoint with the other API endpoints
-# @app.route('/api/find/<resource_type>/<resource_id>', methods=['GET'])
-# def api_get_resource(resource_type, resource_id):
-#     """
-#     Generic API endpoint to get any FHIR resource by its type and ID.
-#     """
-#     app.logger.info(f"Received request to find resource by ID. Type: {resource_type}, ID: {resource_id}")
-#     try:
-#         # We re-use the get_resource function from function.py
-#         response = get_resource(
-#             fhir_store_id=fhir_store_id,
-#             resource_type=resource_type,
-#             resource_id=resource_id,
-#             fhir_store_parent=fhir_store_parent,
-#             healthcare_client=healthcare_client
-#         )
-#         app.logger.info(f"Successfully found resource {resource_type}/{resource_id}.")
-#         return jsonify(response)
-#     except Exception as e:
-#         # The Google API client often returns specific error structures
-#         # We can parse them for a cleaner error message
-#         error_details = getattr(e, 'content', str(e))
-#         try:
-#             # Try to parse the json error content from the client library
-#             import json
-#             error_json = json.loads(error_details)
-#             message = error_json.get("error", {}).get("message", "An unknown error occurred.")
-#             if "NOT_FOUND" in message:
-#                  app.logger.warning(f"Resource not found: {resource_type}/{resource_id}")
-#                  return jsonify({"error": f"Resource of type '{resource_type}' with ID '{resource_id}' was not found."}), 404
-#             else:
-#                 app.logger.error(f"API error finding resource: {message}")
-#                 return jsonify({"error": message}), 500
-#         except:
-#             app.logger.exception(f"Generic error finding resource {resource_type}/{resource_id}.")
-#             return jsonify({"error": str(e)}), 500
-
 @app.route('/api/search/patient/mrn/<mrn>', methods=['GET'])
 def api_search_patient_by_mrn(mrn):
     """API endpoint to search for a patient by their MRN."""

@@ -467,9 +467,6 @@ def update_resource(
 ## Patching a resource
 
 def patch_resource(
-    project_id: str,
-    location: str,
-    dataset_id: str,
     fhir_store_id: str,
     resource_type: str,
     resource_id: str,

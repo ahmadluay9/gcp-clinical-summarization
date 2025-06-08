@@ -224,3 +224,53 @@ button.primary-action {
 button.primary-action:hover {
     background-color: #157347;
 }
+
+/* --- Styling for Formatted Resource Cards --- */
+.resource-card {
+    background-color: #ffffff;
+    border: 1px solid #dddfe2;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.resource-card.error-card {
+    border-left: 5px solid #dc3545; /* Red for errors */
+}
+
+.resource-title {
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Color-code titles for different resources */
+.patient-title { color: #0d6efd; }
+.encounter-title { color: #6f42c1; }
+.condition-title { color: #d63384; }
+.observation-title { color: #fd7e14; }
+.default-title { color: #6c757d; }
+.procedure-title { color: #198754; }
+.medication-title { color: #6f42c1; } /* Re-using a color, or pick a new one */
+.diagnostic-title { color: #dc3545; } /* Red for reports */
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px 20px; /* row-gap column-gap */
+    font-size: 0.95rem;
+}
+
+.details-grid div {
+    padding: 5px 0;
+}
+
+.details-grid .full-width {
+    grid-column: 1 / -1; /* Make an item span the full width */
+}
